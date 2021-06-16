@@ -1,141 +1,195 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../../StateProvider'
+import React, { useContext, useState } from "react";
+import { WalletContext } from "../../StateProvider";
+import moment from "moment";
 
 function CreateWalletForm() {
-  // const [state, dispatch] = useContext(AppContext)
-  // const { wallets, currentWalletID } = state
+  const [state, dispatch] = useContext(WalletContext);
+  const [wallet, setWallet] = useState({
+    name: "",
+    balance: 0,
+    currency: "",
+    description: "",
+    id: "",
+  });
 
-  // wallet = {
-  //   name,
-  //   balance,
-  //   currency,
-  //   description,
-  //   transaction list
-  //   id
-  // }
-
-  // function createWallet() {
-  //     const wallet ;
-  //     if (wallet.length === 0) {
-  //       dispatch({ type: "SET_WALLET", value: wallet});
-  //     }
-  // }
+  function createWallet() {
+    setWallet();
+    dispatch({
+      type: "SET_WALLET",
+      value: { ...wallet, id: moment().format() },
+    });
+  }
 
   return (
     <>
-      <h1>Their is not Wallet</h1>
-
       <div
-        class='fixed z-10 inset-0 overflow-y-auto'
-        aria-labelledby='modal-title'
-        role='dialog'
-        aria-modal='true'
+        className="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
       >
-        <div class='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div
-            class='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'
-            aria-hidden='true'
+            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
           ></div>
 
           <span
-            class='hidden sm:inline-block sm:align-middle sm:h-screen'
-            aria-hidden='true'
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
           >
             &#8203;
           </span>
 
-          <div class='inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
-            <div class='bg-white p-4 sm:p-5'>
-              <div class='sm:flex sm:content-center'>
-                <div class='m-3 text-center sm:mt-0 sm:ml-4 sm:text-left sm:content-center'>
-                  <h1>Create A new Wallet</h1>
+          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="bg-white p-4 sm:p-5">
+              {/* Header */}
+              <div className="sm:flex sm:content-center">
+                <div className="m-3 w-full sm:mt-0 sm:ml-4 sm:content-center">
+                  <h1 className="text-center">Create A new Wallet</h1>
                 </div>
               </div>
-              <div class='sm:flex sm:items-start sm:m-2'>
-                <div class='col-span-6 sm:col-span-3 w-full'>
+              {/* Get Name and Balance Form */}
+              <div>
+                {/* Get Name Form */}
+                <div className="col-span-6 sm:col-span-3 w-full sm:my-2">
                   <label
-                    for='name'
-                    class='block text-sm font-medium text-gray-700'
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     First name
                   </label>
                   <input
-                    type='text'
-                    name='name'
-                    id='name'
-                    placeholder='Enter the Wallet name'
-                    class='mt-1 block w-full shadow-sm sm:text-sm border-b-2 border-black'
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Enter the Wallet name"
+                    className="mt-1 block w-full shadow-sm sm:text-sm border-b-2 border-black"
+                    onChange={(e) =>
+                      setWallet({ ...wallet, name: e.target.value })
+                    }
                   />
                 </div>
-                <div class='col-span-6 sm:col-span-3 w-full'>
+                {/* Get Balance Form */}
+                <div className="col-span-6 sm:col-span-3 w-full">
                   <label
-                    for='balance'
-                    class='block text-sm font-medium text-gray-700'
+                    htmlFor="balance"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Balance
                   </label>
                   <input
-                    type='number'
-                    name='balance'
-                    id='balance'
-                    placeholder='Enter your wallet balance'
-                    class='mt-1 block w-full shadow-sm sm:text-sm border-b-2 border-black'
+                    type="number"
+                    name="balance"
+                    id="balance"
+                    placeholder="Enter your wallet balance"
+                    className="mt-1 block w-full shadow-sm sm:text-sm border-b-2 border-black"
+                    onChange={(e) =>
+                      setWallet({ ...wallet, balance: e.target.value })
+                    }
                   />
                 </div>
               </div>
-              <div class='sm:flex sm:items-start'>
-                <div class='col-span-6 sm:col-span-3'>
-                  <fieldset>
-                    <div>
-                      <legend class='text-base font-medium text-gray-900'>
-                        Choose your currency
-                      </legend>
+              {/* get currency radio buttons */}
+              <div className="sm:flex sm:items-start my-2">
+                <div className="col-span-6 sm:col-span-3 ">
+                  {/* Title */}
+                  <label
+                    htmlFor="Currency"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Currency
+                  </label>
+                  {/* radios */}
+                  <div className="mt-2">
+                    {/* Dollar radio */}
+                    <div className="flex items-center">
+                      <input
+                        name="currency"
+                        htmlFor="dollars"
+                        value="dollars"
+                        type="radio"
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mt-1 block shadow-sm sm:text-sm"
+                        onChange={(e) =>
+                          setWallet({ ...wallet, currency: e.target.value })
+                        }
+                      />
+                      <label
+                        htmlFor="dollars"
+                        className="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Dollars
+                      </label>
                     </div>
-                    <div class='mt-4 space-y-4'>
-                      <div class='flex items-center'>
-                        <input
-                          id='dollars'
-                          name='dollars'
-                          type='radio'
-                          class='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300'
-                        />
-                        <label
-                          for='dollars'
-                          class='ml-3 block text-sm font-medium text-gray-700'
-                        >
-                          Dollars
-                        </label>
-                      </div>
-                      <div class='flex items-center'>
-                        <input
-                          id='LBP'
-                          name='LBP'
-                          type='radio'
-                          class='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300'
-                        />
-                        <label
-                          for='LBP'
-                          class='ml-3 block text-sm font-medium text-gray-700'
-                        >
-                          Lebanese Pound
-                        </label>
-                      </div>
-                      <div class='flex items-center'>
-                        <input
-                          id='BitCoin'
-                          name='BitCoin'
-                          type='radio'
-                          class='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300'
-                        />
-                        <label
-                          for='BitCoin'
-                          class='ml-3 block text-sm font-medium text-gray-700'
-                        >
-                          BitCoin
-                        </label>
-                      </div>
+                    {/* LBP radio */}
+                    <div className="flex items-center">
+                      <input
+                        name="currency"
+                        htmlFor="LBP"
+                        value="LBP"
+                        type="radio"
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mt-1 block shadow-sm sm:text-sm"
+                        onChange={(e) =>
+                          setWallet({ ...wallet, currency: e.target.value })
+                        }
+                      />
+                      <label
+                        htmlFor="LBP"
+                        className="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Lebanese Pound
+                      </label>
                     </div>
-                  </fieldset>
+                    {/* BitCoin radio */}
+                    <div className="flex items-center">
+                      <input
+                        name="currency"
+                        htmlFor="BitCoin"
+                        value="BitCoin"
+                        type="radio"
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mt-1 block shadow-sm sm:text-sm"
+                        onChange={(e) =>
+                          setWallet({ ...wallet, currency: e.target.value })
+                        }
+                      />
+                      <label
+                        htmlFor="BitCoin"
+                        className="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        BitCoin
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Description TextArea*/}
+              <div className="sm:flex sm:content-center">
+                <div className=" w-full sm:content-center sm:justify-items-center">
+                  <label
+                    htmlFor="Descrition"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Description
+                  </label>
+                  <textarea
+                    name="description"
+                    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                    rows="4"
+                    onChange={(e) =>
+                      setWallet({ ...wallet, description: e.target.value })
+                    }
+                  ></textarea>
+                </div>
+              </div>
+              {/* footer*/}
+              <div className="sm:flex sm:content-center">
+                <div className="mt-3 w-full sm:content-center sm:justify-items-center">
+                  <button
+                    onClick={createWallet}
+                    className="w-full bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"
+                  >
+                    Create Wallet
+                  </button>
                 </div>
               </div>
             </div>
@@ -143,82 +197,7 @@ function CreateWalletForm() {
         </div>
       </div>
     </>
-    // <div>
-    //   <div>
-    //     <h5 id='exampleModalLabel'>Create new Wallet</h5>
-    //     <button
-    //       type='button'
-    //       data-bs-dismiss='modal'
-    //       aria-label='Close'
-    //     ></button>
-    //   </div>
-    //   <div>
-    //     <div>
-    //       <label for='wallet-name'>Name</label>
-    //       <div>
-    //         <input type='text' id='wallet-name' />
-    //       </div>
-    //     </div>
-
-    //     <div>
-    //       <div>
-    //         <label>Currency</label>
-    //       </div>
-    //       <div>
-    //         <div>
-    //           <input
-    //             type='radio'
-    //             id='currency-btc'
-    //             name='currency'
-    //             value='btc'
-    //           />
-    //           <label for='currency-btc'>Bitcoins (BTC)</label>
-    //         </div>
-    //         <div>
-    //           <input type='radio' id='currency-eth' name='currency' />
-    //           <label class='custom-control-label' for='currency-eth'>
-    //             Ethereum (ETH)
-    //           </label>
-    //         </div>
-    //         <div>
-    //           <input type='radio' id='currency-usd' name='currency' />
-    //           <label class='custom-control-label' for='currency-usd'>
-    //             US Dollars ($)
-    //           </label>
-    //         </div>
-
-    //         <div>
-    //           <input type='radio' id='currency-lbp' name='currency' />
-    //           <label class='custom-control-label' for='currency-lbp'>
-    //             Lebanese Pound (LBP)
-    //           </label>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div>
-    //       <label for='wallet-balance'>Balance</label>
-    //       <div>
-    //         <input type='number' id='wallet-balance' min='0' />
-    //       </div>
-    //     </div>
-
-    //     <div>
-    //       <label for='wallet-desc'>Description</label>
-    //       <div>
-    //         <input type='text' id='wallet-desc' />
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class='modal-footer'>
-    //     <button type='button' id='close-btn'>
-    //       Close
-    //     </button>
-    //     <button type='button' id='create-btn' onClick={{ createWallet }}>
-    //       create wallet
-    //     </button>
-    //   </div>
-    // </div>
-  )
+  );
 }
 
-export default CreateWalletForm
+export default CreateWalletForm;
