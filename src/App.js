@@ -12,7 +12,10 @@ function App() {
     //   </Route>
     // </Router>
     // </div>
-    <Main />
+    <>
+      <Nav />
+      <Main />
+    </>
   )
 }
 
