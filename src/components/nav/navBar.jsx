@@ -1,43 +1,43 @@
-import React from 'react'
+import React from "react";
 
 function navBar() {
   return (
-    <nav className='flex items-center justify-between flex-wrap bg-gray-500 p-2 shadow'>
+    <nav className="flex items-center justify-between flex-wrap bg-primary p-1 shadow">
       {/* Website logo */}
-      <div className='flex items-center justify-between lg:w-auto w-full'>
-        <img src='flying_money.png' alt='Flying Money' width='250' />
-        {/* <img
-          src='http://i.stack.imgur.com/SBv4T.gif'
-          alt='this slowpoke moves'
-          width='50'
-          className='logo'
-        /> */}
-
-        <div className='flex items-center flex-shrink-0 text-gray-800 mr-10'>
-          <span className='font-semibold text-white text-2xl'>
-            وين راح معاشي
+      <div className="flex items-center justify-between">
+        <img
+          src="https://i.postimg.cc/hXSyVJCQ/flying-money.gif"
+          border="0"
+          alt="flying-money"
+          // className="logo"
+          width="50"
+          height="50"
+        />
+        <div className="flex items-center flex-shrink-0 text-gray-800">
+          <span className="font-semibold text-white text-2xl text-center">
+            <h1 className="text-center">وين راح معاشي</h1>
           </span>
         </div>
       </div>
       {/* search box */}
-      <div className='flex justify-between lg:w-auto w-full'>
-        <div className='flex items-center flex-shrink-0 text-gray-800 ml-10'>
+      <div className="flex justify-between">
+        <div className="flex items-center flex-shrink- ml-10">
           <input
-            className='bg-white h-10 px-2 rounded-lg text-sm focus:outline-none'
-            type='search'
-            name='search'
-            placeholder='Search'
+            className="bg-white h-10 px-2 rounded-lg text-sm focus:outline-none"
+            type="search"
+            name="search"
+            placeholder="Search"
           />
           <button
-            type='submit'
-            className='border-2 rounded-lg border-blue-500 text-blue-500 text-sm h-10 ml-2 px-2 py-1 text-center align-middle'
+            type="submit"
+            className="border-2 rounded-lg border-secondary text-secondary group hover:border-blue-500 hover:text-blue-500 text-sm h-10 ml-2 px-2 py-1 text-center align-middle"
           >
             search
           </button>
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default navBar
+export default navBar;
