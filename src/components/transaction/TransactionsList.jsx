@@ -20,10 +20,11 @@ function TransactionsList() {
         </tr>
         {currentWallet.transactionList.map((transaction) => {
           ;<tr>
-            <td> {transaction.id}</td>
-            <td>{transaction.type}</td>
-            <td>{transaction.amount}</td>
-            <td> {transaction.date}</td>
+            // <td> {transaction.id}</td>
+            // <td>{transaction.type}</td>
+            // <td>{transaction.amount}</td>
+            // <td> {transaction.date}</td>
+            <TransactionItem {transaction} />
           </tr>
         })}
       </table>
