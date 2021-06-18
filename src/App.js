@@ -1,5 +1,6 @@
 import Main from "./components/main/";
 import Nav from "./components/nav/";
+import Footer from "./components/footer/";
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // color to use:
@@ -16,10 +17,11 @@ function App() {
     //   </Route>
     // </Router>
     // </div>
-    <>
+    <div className="flex flex-col h-screen">
       <Nav />
       <Main />
-    </>
+      <Footer />
+    </div>
   );
 }
 
