@@ -22,22 +22,27 @@ function NoWalletsErrorPage() {
             />
           </div>
         </div>
-        <div className="flex flex-col flex-wrap justify-center align-middle text-center bg-secondary w-1/2 h-full text-white">
+        <div className="flex flex-col flex-wrap justify-center align-middle text-center bg-secondary w-1/2 h-full text-primary">
           <div>
-            <h1 className="text-2xl w-full">Welcome to the E-Wallet</h1>
-            <h2 className="text-xl">وين راح معاشي</h2>
-            <h4>You have no Wallets... start by creating one</h4>
+            <h1 className="text-4xl w-full font-semibold">
+              Welcome to the E-Wallet
+            </h1>
+            <h2 className="text-3xl font-semibold font-mono mb-10">
+              وين راح معاشي
+            </h2>
+            <h4 className="text-xl font-semibold font-mono">
+              ! You have no Wallets... start by creating one !
+            </h4>
             <button
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"
+              className="font-extrabold font-mono text-xl py-2 px-4 m-4 mt-1 border-4 border-primary text-primary group hover:border-blue-500 hover:text-blue-500 rounded-full"
               onClick={createWallet}
             >
-              Create form
+              Create New Wallet
             </button>
             {showForm && <WalletForm />}
           </div>
         </div>
       </div>
-      <div className="w-full h-3 bg-primary"></div>
     </>
   );
 }
