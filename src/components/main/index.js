@@ -7,7 +7,9 @@ import TransForm from "./TransactionForm";
 
 function Main() {
   const [state, dispatch] = useContext(WalletContext);
-  const { wallets, currentWalletID } = state;
+  const { wallets, activeWalletID } = state;
+  console.log(state);
+  console.log(wallets);
   return <>{wallets.length === 0 ? <NoWallet /> : <Wallet />}</>;
 }
 

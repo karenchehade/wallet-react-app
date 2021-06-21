@@ -11,11 +11,9 @@ function TransactionForm() {
   })
 
   function addTransaction() {
-    // let activeWallet = state.wallets.filter((w) => (w.id = state.activeWalletID))
-    // dispatch({ type : 'SET_WALLETS' , value : })
     dispatch({
-      type: 'SET_TRANSLIST',
-      value: transaction,
+      type: 'SET_TRANS',
+      value: {walletID : state.activeWalletID , newTrans: transaction }  
     })
   }
   return (

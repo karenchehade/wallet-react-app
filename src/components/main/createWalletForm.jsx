@@ -3,22 +3,32 @@ import { WalletContext } from "../../StateProvider";
 import moment from "moment";
 
 function CreateWalletForm() {
-  const [, dispatch] = useContext(WalletContext);
-  const [wallet, setWallet] = useState({
-    name: "",
-    balance: 0,
-    currency: "",
-    description: "",
-    transactionList: [],
-    id: "",
-  });
+  const [state, dispatch] = useContext(WalletContext);
 
-  function createWallet() {
-    setWallet();
+  function createWallet(e) {
+    
+    const walletId = Math.floor(new Date()/1000)
+    const wallet ={
+    name: e.target.name.value,
+    balance: e.target.balance.value,
+    currency: e.target.currency.value,
+    description: e.target.desc.value,
+    transactionList: [],
+    id: walletId,
+    }
+    console.log(wallet);
     dispatch({
-      type: "SET_WALLET",
-      value: { ...wallet, id: moment().format() },
+       type: 'SET_WALLETID',
+      id: walletId,
     });
+    dispatch({
+      type: 'SET_WALLETS',
+      value: [ ...state.wallets , wallet],
+     
+    });
+     
+   
+   e.preventDefault()
   }
 
   return (
@@ -45,7 +55,8 @@ function CreateWalletForm() {
           <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
             {/* the modal start her */}
             <div className="bg-primary p-4 sm:p-5 text-secondary">
-              <form onSubmit={createWallet}>
+              <form onSubmit={(e)=>{
+                createWallet(e)}}>
                 {/* Header */}
                 <div className="sm:flex sm:content-center">
                   <div className="flex w-full algin-center justify-center">
@@ -64,12 +75,9 @@ function CreateWalletForm() {
                     <input
                       type="text"
                       name="name"
-                      id="name"
+                      id="wallet-name"
                       placeholder="Enter the Wallet name"
                       className="mt-1 py-1 px-2 block w-full shadow-sm sm:text-sm border bg-primary border-secondary rounded-xl"
-                      onChange={(e) =>
-                        setWallet({ ...wallet, name: e.target.value })
-                      }
                       required
                     />
                   </div>
@@ -84,12 +92,9 @@ function CreateWalletForm() {
                     <input
                       type="number"
                       name="balance"
-                      id="balance"
+                      id="wallet-balance"
                       placeholder="Enter your wallet balance"
                       className="mt-1 py-1 px-2 block w-full shadow-sm sm:text-sm border bg-primary border-secondary rounded-xl"
-                      onChange={(e) =>
-                        setWallet({ ...wallet, balance: e.target.value })
-                      }
                       required
                     />
                   </div>
@@ -100,6 +105,7 @@ function CreateWalletForm() {
                     {/* Title */}
                     <label
                       htmlFor="Currency"
+                      
                       className="block text-sm font-medium"
                     >
                       Currency
@@ -114,9 +120,7 @@ function CreateWalletForm() {
                           value="dollars"
                           type="radio"
                           className="focus:ring-secondary bg-primary h-4 w-4 text-secondary border-secondary mt-1 block shadow-sm sm:text-sm"
-                          onChange={(e) =>
-                            setWallet({ ...wallet, currency: e.target.value })
-                          }
+                         
                           required
                         />
                         <label
@@ -134,9 +138,7 @@ function CreateWalletForm() {
                           value="LBP"
                           type="radio"
                           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mt-1 block shadow-sm sm:text-sm"
-                          onChange={(e) =>
-                            setWallet({ ...wallet, currency: e.target.value })
-                          }
+                         
                           required
                         />
                         <label
@@ -154,9 +156,7 @@ function CreateWalletForm() {
                           value="BitCoin"
                           type="radio"
                           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mt-1 block shadow-sm sm:text-sm"
-                          onChange={(e) =>
-                            setWallet({ ...wallet, currency: e.target.value })
-                          }
+                          
                           required
                         />
                         <label
@@ -179,12 +179,10 @@ function CreateWalletForm() {
                       Description
                     </label>
                     <textarea
-                      name="description"
+                      name="desc"
                       className="mt-1 py-1 px-2 block w-full shadow-sm sm:text-sm border bg-primary border-secondary rounded-xl"
                       rows="4"
-                      onChange={(e) =>
-                        setWallet({ ...wallet, description: e.target.value })
-                      }
+                      
                       required
                     ></textarea>
                   </div>
