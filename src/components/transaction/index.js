@@ -1,8 +1,14 @@
-import React from 'react'
-import TransactionList from './TransactionsList'
+import React, { useContext, useState } from 'react'
+import TransactionsList from './TransactionsList'
+import { WalletContext } from '../../StateProvider'
 
-function transaction() {
-  return <TransactionList />
+function Transaction() {
+  const [state, dispatch] = useContext(WalletContext)
+  return (
+    <>
+      <TransactionsList />
+    </>
+  )
 }
 
-export default transaction
+export default Transaction

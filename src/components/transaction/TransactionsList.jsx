@@ -8,26 +8,27 @@ function TransactionsList() {
   const currentWallet = wallets.find((wallet) => {
     return wallet.id === activeWalletID
   })
-
+  console.log(currentWallet.transactionList)
   return (
     <div>
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>Transfer Type</th>
+      {/* <table>
+        <tr> */}
+      {/* <th>ID</th> */}
+      {/* <th>Transfer Type</th>
           <th>Amount</th>
-          <th>Date</th>
-        </tr>
-        {currentWallet.transactionList.map((transaction) => {
-          ;<tr>
-            // <td> {transaction.id}</td>
-            // <td>{transaction.type}</td>
-            // <td>{transaction.amount}</td>
-            // <td> {transaction.date}</td>
-            <TransactionItem {transaction} />
-          </tr>
+          <th>Tag</th>
+        </tr> */}
+
+      {currentWallet.transactionList &&
+        currentWallet.transactionList.map((transaction) => {
+          ;<h1>
+            <h2>New</h2>
+            <h2>{transaction.type}</h2>
+            <h2>{transaction.transactionValue}</h2>
+            <h2> {transaction.transactionTags}</h2>
+          </h1>
         })}
-      </table>
+      {/* </table> */}
     </div>
   )
 }
