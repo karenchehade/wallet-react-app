@@ -13,11 +13,11 @@ function TransactionForm() {
   function addTransaction() {
     dispatch({
       type: 'SET_TRANS',
-      value: {walletID : state.activeWalletID , newTrans: transaction }  
+      value: { walletID: state.activeWalletID, newTrans: transaction },
     })
   }
   return (
-    <>
+    <div className='w-1/2 h-full'>
       <form>
         {' '}
         {/* Make Transaction Field */} <h2> Make a Transaction </h2>{' '}
@@ -85,7 +85,7 @@ function TransactionForm() {
           Add Transaction{' '}
         </button>{' '}
       </form>{' '}
-    </>
+    </div>
   )
 }
 
