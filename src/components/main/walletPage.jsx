@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import TransactionForm from './TransactionForm'
-import TransactionsList from '../transaction/TransactionsList'
-import { WalletContext } from '../../StateProvider'
+import TransactionsList from './TransactionsList'
+import WalletList from './walletList'
+import WalletInformation from './walletInformation'
 function WalletPage() {
-  const [state, dispatch] = useContext(WalletContext)
   return (
-    <>
-      <TransactionForm />
-      <TransactionsList />
-    </>
+    <div className='flex flex-grow bg-secondary text-primary'>
+      <WalletList />
+      <div className='h-full w-4/5'>
+        <div className='flex h-1/3 w-full'>
+          <WalletInformation />
+          <TransactionForm />
+        </div>
+        <TransactionsList />
+      </div>
+    </div>
   )
 }
 
